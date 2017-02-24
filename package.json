@@ -4,7 +4,8 @@
   "description": "A bot for using Discord as an interface for Text Adventure games",
   "main": "app.js",
   "scripts": {
-    "test": "exit 0"
+    "test": "mocha",
+    "start": "node app.js"
   },
   "keywords": [
     "text",
