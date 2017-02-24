@@ -102,7 +102,11 @@ class StorageManager {
      * the file
      */
     clean(hardClean = false) {
-        fs.unlinkSync(BASE_DIRECTORY + this.filename);
+        try{
+            fs.unlinkSync(BASE_DIRECTORY + this.filename);
+        } catch(e) {
+            // if the file doesn't exist, we don't have to do anything
+        }
 
         if(hardClean) {
             this.data = {};

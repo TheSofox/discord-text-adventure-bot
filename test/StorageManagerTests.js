@@ -36,5 +36,9 @@ describe("StorageManager", function() {
         it("should return undefined for a non-existent variable", function() {
             assert.equal(typeof manager.get("foo"), "undefined", "'foo' was not undefined!");
         });
+
+        after(function() {
+            manager.clean(true);
+        });
     });
 });
