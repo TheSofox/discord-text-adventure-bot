@@ -37,6 +37,12 @@ describe("StorageManager", function() {
             assert.equal(typeof manager.get("foo"), "undefined", "'foo' was not undefined!");
         });
 
+        it("should return the value of a previously set item", function() {
+            manager.set("bar", "baz");
+
+            assert.equal(manager.get("bar"), "baz", "'bar' value was not set to 'baz'.");
+        });
+
         after(function() {
             manager.clean(true);
         });
