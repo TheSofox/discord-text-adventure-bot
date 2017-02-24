@@ -94,6 +94,21 @@ class StorageManager {
         }
     }
 
+    /**
+     * Cleans up the JSON file associated with this manager, removing it from
+     * the filesystem.
+     * 
+     * @param {bool=} hardClean if true, will also reset the memory cache of 
+     * the file
+     */
+    clean(hardClean = false) {
+        fs.unlinkSync(BASE_DIRECTORY + this.filename);
+
+        if(hardClean) {
+            this.data = {};
+        }
+    }
+
 }
 
 module.exports = StorageManager;

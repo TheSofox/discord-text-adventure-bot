@@ -2,9 +2,11 @@ const assert = require("assert");
 const StorageManager = require("./../utility/StorageManager");
 
 describe("StorageManager", function() {
-    let manager = new StorageManager("test");
+    
 
     describe("set()", function() {
+        let manager = new StorageManager("test-set");
+
         it("should set the data element's correct property", function() {
             manager.set("foo", "bar");
 
@@ -13,7 +15,7 @@ describe("StorageManager", function() {
 
         it("should set the correct value in the JSON file", function() {
             manager.set("bar", "baz");
-            const fileData = require("./../storage/test.json");
+            const fileData = require("./../storage/test-set.json");
         
             assert.equal(fileData.bar, "baz", "File did not contain the 'bar' property!");
         });
@@ -21,6 +23,18 @@ describe("StorageManager", function() {
             manager.set("baz", "foobar");
 
             assert.equal(manager.get("baz"), "foobar", "get('baz') did not return 'foobar'.");
+        });
+
+        after(function() {
+            manager.clean(true);
+        });
+    });
+
+    describe("get()", function() {
+        let manager = new StorageManager("test-get");
+
+        it("should return undefined for a non-existent variable", function() {
+            assert.equal(typeof manager.get("foo"), "undefined", "'foo' was not undefined!");
         });
     });
 });
